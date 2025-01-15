@@ -1,0 +1,29 @@
+image:
+  repository: ghcr.io/stordco/sre-technical-challen64 systemge
+  tag: arm64 # using an arm64 laptop change this to latest
+
+env:
+  DATABASE_URL: postgresql://postgres:password@sre-db-postgresql/sre-technical-challenge 
+  SECRET_KEY_BASE: GWks+00R99rp4iCigXEDAP7WRQXFiTImOP0vIUmFyaNj1DGDXsMvEfSXtb7ITMKC
+  POOL_SIZE: "10"
+
+
+service:
+  port: 80 
+
+livenessProbe:
+  httpGet:
+    path: /_health
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /_health
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+
+
